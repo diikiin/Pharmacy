@@ -1,0 +1,58 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="login">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post" id="registration-form">
+                        {% csrf_token %}
+                        <h2 class="text-center"> Join us </h2>
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label fs-5"> First Name </label>
+                            <input class="form-control" type="text" name="first_name" id="firstName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="lastName" class="form-label fs-5"> Last Name </label>
+                            <input class="form-control" type="text" name="last_name" id="lastName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registration-email" class="form-label fs-5"> Email address </label>
+                            <input class="form-control" type="email" name="email" id="registration-email"
+                                   placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registration-password1" class="form-label fs-5"> Password </label>
+                            <input class="form-control" type="password" name="password1"
+                                   id="registration-password1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registration-password2" class="form-label fs-5"> Repeat Password </label>
+                            <input class="form-control" type="password" name="password2"
+                                   id="registration-password2" required>
+                        </div>
+
+                        {% for field in registration_form %}
+                        <p>
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                        {% if registration_form.non_field_errors %}
+                        <div style="color: red">
+                            <p>{{ registration_form.non_field_errors }}</p>
+                        </div>
+                        {% endif %}
+
+                        <div class="text-center">
+                            <button form="registration-form" type="submit" class="btn login-btn mx-auto mb-3 fs-4">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

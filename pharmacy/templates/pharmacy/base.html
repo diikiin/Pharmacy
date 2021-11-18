@@ -1,0 +1,133 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- shortcut icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'pharmacy/img/home/main/icon.png' %}">
+    <title>{{ title }}</title>
+
+    <!-- bootstrap -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- css styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'pharmacy/css/styles.css' %}">
+
+</head>
+<body>
+<!-- -----------navbar------------ -->
+<header id="header" class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+        <div class="container mx-auto">
+            <a href="index.html" class="navbar-brand ms-xl-5 me-sm-0 fs-2">
+                <img class="navbar-logo" src="{% static 'pharmacy/img/home/main/icon.png' %}" alt="Company Logo">Almaty
+                Pharmacy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent"
+                    aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navContent">
+                <ul class="navbar-nav mb-3 mb-lg-0 fs-5 px-auto">
+
+                    {#                    {% block navigation %}#}
+                    {% for n in navigation %}
+                        {% if not forloop.last %}
+                            {% if not title == n.title %}
+                                <li class="nav-item">
+                                    <a href="{% url n.url_name %}" class="nav-link px-3">{{ n.title }}</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url n.url_name %}" class="nav-link active px-3"
+                                       aria-current="page">{{ n.title }}</a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            {% if request.user.is_authenticated %}
+                                <li class="nav-item dropdown">
+                                    <a href="" class="nav-link dropdown-toggle px-3" id="navbarDropdown"
+                                       data-toggle="dropdown"
+                                       aria-haspopup="true" aria-expanded="false">Account</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{% url 'profile' %}">My page</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a href="{% url 'login' %}" class="nav-link sign-in px-3">Login</a>
+                                </li>
+                                <li class="py-2">
+                                    |
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'register' %}" class="nav-link sign-in px-3">Register</a>
+                                </li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {#                    {% endblock %}#}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+
+<!-- -----------footer part------------ -->
+<footer id="footer">
+    <div class="footer-info pt-3">
+        <div class="container">
+            <div class="row justify-content-evenly">
+                <div class="col-sm-4 text-center">
+                    <h2>Working Hours</h2>
+                    <h4>Mon – Fri 9:00am – 5:30pm
+                        <br>Saturday 9:00am – 12:00pm
+                        <br>Sunday Closed</h4>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <h2>Location</h2>
+                    <h4>Almaty, Almaly district,
+                        Abay avenue 47</h4>
+                </div>
+            </div>
+            <div class="row justify-content-evenly pb-3">
+                <div class="col-sm-4 text-center">
+                    <h2>Contact</h2>
+                    <h4>Phone: +7 797 444 33 11</h4>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <h2>Follow us</h2>
+                    <h4><a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-creator">
+        <div class="col-12 text-center">Created by Kabyl Dauren</div>
+    </div>
+</footer>
+
+<!-- js script from bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+<!-- ad script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680276229550252"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

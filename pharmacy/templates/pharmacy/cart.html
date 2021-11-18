@@ -1,0 +1,75 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{% block content %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680276229550252"
+            crossorigin="anonymous"></script>
+    <!-- ad -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5680276229550252"
+         data-ad-slot="4122787341"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12"><h2 class="information-title text-center mb-5">Purchase of medicines</h2></div>
+                <div class="col-sm-12 col-lg-8 text-md-end text-center">
+                    <table class="table table-sm align-middle text-start">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Drug name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Company manufacturer</th>
+                            <th scope="col">Сost</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 1.jpg' %}" alt="Good"></td>
+                            <td>Anticeptic</td>
+                            <td>Hand antiseptic. Kills 99% of all germs. provides reliable protection.</td>
+                            <td>Bayer</td>
+                            <th scope="col">200&#8376;</th>
+                        </tr>
+                        <tr>
+                            <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good"></td>
+                            <td>Rengalin</td>
+                            <td>Cough lozenges. Helps soothe sore throat.</td>
+                            <td>Materia Medica</td>
+                            <th scope="col">750&#8376;</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th scope="col">Total cost</th>
+                            <th scope="col">950&#8376;</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-purchase text-uppercase">Purchase</button>
+                </div>
+            </div>
+        </div>
+        <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680276229550252"
+                crossorigin="anonymous"></script>
+        <!-- ad -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5680276229550252"
+             data-ad-slot="4122787341"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </section>
+{% endblock %}

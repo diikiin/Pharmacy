@@ -1,0 +1,49 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-lg-6 fs-5">
+                    <h1 class="text-center">About our pharmacy</h1>
+                    <p>Almaty Pharmacy is an independent, family-owned and operated pharmacy that has been serving the
+                        Almaty area for more than 40 years. Almaty Pharmacy isn’t just any local pharmacy. We provide
+                        far more than medications, dedicating ourselves and each service we offer to improving the
+                        health of our community. Our pharmacists combine extensive clinical knowledge with
+                        individualized care to ensure that every person who walks through our doors receives the best
+                        care possible. It is our attention to detail and devotion to our patients that have allowed us
+                        to serve this community for over three decades.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img class="about-img" src="{% static 'pharmacy/img/about/about 1.jfif' %}" alt="About our pharmacy">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 order-lg-1 fs-5">
+                    <h1 class="text-center">What we do</h1>
+                    <p>Almaty Pharmacy is committed to ‘healthcare for life’ and our vision is to be a great healthcare
+                        brand.</p>
+                    <p>Our customers are our main focus and we endeavour to provide them with exceptional service and
+                        healthcare. Accessibly located within the heart of communities, our local pharmacies are right
+                        on the doorstep and strive to be the first choice for customer needs.</p>
+                </div>
+                <div class="col-lg-6 order-lg-0 text-center">
+                    <img class="about-img" src="{% static 'pharmacy/img/about/about 2.jfif' %}" alt="What we do">
+                </div>
+                <div class="col-12 order-lg-2 fs-5 mt-2">
+                    <p> We are much more than a dispenser of medicines. Prevention, management and treatment are at the
+                        very core of our business, and we aim to deliver high quality outcomes for chronic conditions,
+                        such as diabetes and heart health, and to support local communities in making informed health
+                        decisions.</p>
+                    <p>Through our pharmacies and website, Almaty Pharmacy offers high quality healthcare products and
+                        services. We've also launched a range of innovative and affordable products aimed at improving
+                        community health, such as blood pressure monitors and allergy relievers, along with a suite of
+                        convenient professional health check services, including blood pressure and diabetes testing,
+                        and cholesterol and heart checks - all carried out in the comfort of a private consultation
+                        room.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

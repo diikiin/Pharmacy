@@ -1,0 +1,48 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form method="post" id="login-form">
+                    {% csrf_token %}
+                        <h2 class="text-center"> Manage your health </h2>
+                        <div class="mb-3">
+                            <label for="login-email" class="form-label fs-5"> Email address </label>
+                            <input class="form-control" type="email" name="email" id="login-email"
+                                   placeholder="example@mail.ru" required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="login-password" class="form-label fs-5"> Password </label>
+                            <input class="form-control" type="password" name="password" id="login-password" required>
+                        </div>
+                        <div class="mb-3 text-end">
+                            <a class="password-reset-link text-decoration-none" href="{% url 'password reset' %}">
+                                Forgot password?</a>
+                        </div>
+
+                        {% for field in login_form %}
+                        <p>
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                        {% if login_form.non_field_errors %}
+                        <div style="color: red">
+                            <p>{{ login_form.non_field_errors }}</p>
+                        </div>
+                        {% endif %}
+
+                        <div class="text-center">
+                            <button form="login-form" type="submit" class="btn login-btn mx-auto mb-2 d-block fs-4">
+                                Log in
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

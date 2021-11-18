@@ -1,0 +1,117 @@
+{% extends 'pharmacy/base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- -----------main part------------ -->
+    <div class="margin-vert-40 main">
+        <div class="main-title">
+            <div class="main-title-text text-center">
+                <h1><b>We care about your health</b></h1>
+                <p>High quality service provides all types of medicines</p>
+                <a href="{% url 'about' %}" class="btn btn-read-more btn-lg text-uppercase">read more</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------information part------------ -->
+    <div class="margin-vert-40">
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><h2 class="information-title text-center mb-5">May be interesting for you</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="information-block mb-lg-3 mb-md-2">
+                        <img src="{% static 'pharmacy/img/home/information/information 1.jfif' %}" alt="Online consulting">
+                    </div>
+                    <h5 class="text-center">Online consulting with doctor</h5>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="information-block mb-lg-3 mb-md-2">
+                        <img src="{% static 'pharmacy/img/home/information/information 2.jpg' %}" alt="Nutrition Tips">
+                    </div>
+                    <h5 class="text-center">Nutrition Tips</h5>
+                </div>
+                <div class="col-xl-4 col-md-6 col-sm-12">
+                    <div class="information-block mb-lg-3 mb-md-2">
+                        <img src="{% static 'pharmacy/img/home/information/information 3.jpg' %}" alt="Coronavirus">
+                    </div>
+                    <h5 class="text-center">Information about coronavirus and prevention</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------discount part------------ -->
+    <div class="margin-vert-40 discount">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-lg-6 col-md-5 mt-lg-3 mt-xl-5 text-center">
+                    <h1>20% off</h1>
+                    <p class="mt-lg-3 mt-xl-5">Korotkov balms for the normalization of the stomach, intestines and liver
+                        and for cleansing from parasites</p>
+                    <button type="submit"
+                            class="btn btn-add-to-cart btn-add-to-cart-lg btn-lg text-uppercase mt-lg-3 mt-xl-5">add to
+                        cart
+                    </button>
+                </div>
+                <div class="col-lg-5 col-md-7 px-5 mt-sm-5">
+                    <img class="discount-img" src="{% static 'pharmacy/img/home/discount/discount.jpg' %}" alt="Discount">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------goods part------------ -->
+    <div class="margin-vert-40 goods my-xl-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12"><h2 class="information-title text-center mb-5">Frequently bought</h2></div>
+            </div>
+            <div class="row justify-content-around mx-xl-5">
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 1.jpg' %}" alt="Good">
+                    <span>Anticeptic <br>200 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 2.jfif' %}" alt="Good">
+                    <span>Medicine mask <br>35 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 3.jpg' %}" alt="Good">
+                    <span>Essentiale Forte N <br>2150 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good">
+                    <span>Rengalin <br>750 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 5.jpg' %}" alt="Good">
+                    <span>Pampers premium protection <br>3400 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                    <img src="{% static 'pharmacy/img/home/goods/goods 6.jfif' %}" alt="Good">
+                    <span>Mezim forte <br>1200 &#8376;</span>
+                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
+                        cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
