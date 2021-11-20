@@ -35,7 +35,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navContent">
                 <ul class="navbar-nav mb-3 mb-lg-0 fs-5 px-auto">
 
-                    {#                    {% block navigation %}#}
                     {% for n in navigation %}
                         {% if not forloop.last %}
                             {% if not title == n.title %}
@@ -55,8 +54,12 @@
                                        data-toggle="dropdown"
                                        aria-haspopup="true" aria-expanded="false">Account</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{% url 'profile' %}">My page</a>
-                                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                                        <a class="dropdown-item" href="{% url 'profile' %}">
+                                            <i class="bi bi-person pe-1"></i>My page</a>
+                                        <a class="dropdown-item" href="{% url 'orders' %}">
+                                            <i class="bi bi-clipboard pe-1"></i>My orders</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">
+                                            <i class="bi bi-box-arrow-right pe-1"></i>Log out</a>
                                     </div>
                                 </li>
                             {% else %}
@@ -72,7 +75,6 @@
                             {% endif %}
                         {% endif %}
                     {% endfor %}
-                    {#                    {% endblock %}#}
 
                 </ul>
             </div>

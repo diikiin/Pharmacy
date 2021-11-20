@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 
 from .forms import RegistrationForm, LoginForm
+from .models import User
 
 navigation = [{'title': 'Home', 'url_name': 'home'},
               {'title': 'About us', 'url_name': 'about'},
@@ -86,10 +87,23 @@ def logout(request):
     return redirect('home')
 
 
-def profile(request):
+def profile(request, *args, **kwargs):
     context = {
         'navigation': navigation
-    }
+        }
+    user=request.user
+    user_id = user.id
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return HttpResponse("That user doesn't exist")
+    if user:
+        context['id'] = user.id
+        context['email'] = user.email
+        context['first_name'] = user.first_name
+        context['last_name'] = user.last_name
+        context['phone'] = user.phone
+        context['address'] = user.address
     return render(request, 'account/profile.html', context)
 
 
@@ -98,3 +112,10 @@ def password_change(request):
         'navigation': navigation
     }
     return render(request, 'account/reset_password.html', context)
+
+
+def orders(request):
+    context = {
+        'navigation': navigation
+    }
+    return render(request, 'account/orders.html', context)

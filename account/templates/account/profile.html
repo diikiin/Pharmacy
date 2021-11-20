@@ -3,6 +3,33 @@
 
 {% block content %}
     <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="card profile-content">
+                        <div class="profile-info">
+                            <div class="profile-title text-center"><h1>Personal cabinet</h1></div>
+                            <div class="profile-info">
+                                <div class="row mt-2 justify-content-center">
+                                    <div class="col-md-4 ps-5"><p class="mt-4 mb-1 field-heading">First Name</p>
+                                        <h5>{{ first_name }}</h5></div>
+                                    <div class="col-md-4"><p class="mt-4 mb-1 field-heading">Last Name</p>
+                                        <h5>{{ last_name }}</h5></div>
+                                </div>
+                                <div class="row mt-2 justify-content-center">
+                                    <div class="col-md-8"><p class="mt-4 mb-1 field-heading">Email</p>
+                                        <h5>{{ email }}</h5></div>
+                                    <div class="col-md-8"><p class="mt-4 mb-1 field-heading">Phone</p>
+                                        <h5>{{ phone }}</h5></div>
+                                    <div class="col-md-8"><p class="mt-4 mb-1 field-heading">Address</p>
+                                        <h5>{{ address }}</h5></div>
+                                </div>
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 {% endblock %}

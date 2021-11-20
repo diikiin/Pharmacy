@@ -333,3 +333,18 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     color: var(--bs-black-rgb);
     background-color: var(--color4);
 }
+
+
+/* -------------------------------- Cart page -------------------------------- */
+
+.profile-content{
+    background-color: #fff;
+}
+
+.profile-title {
+
+}
+
+.profile-info {
+
+}
