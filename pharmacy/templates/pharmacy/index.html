@@ -69,48 +69,50 @@
                 <div class="col-12"><h2 class="information-title text-center mb-5">Frequently bought</h2></div>
             </div>
             <div class="row justify-content-around mx-xl-5">
+                {% for product in products %}
                 <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 1.jpg' %}" alt="Good">
-                    <span>Anticeptic <br>200 &#8376;</span>
+                    <img src="{{ product.img.url }}" alt="Good">
+                    <span>{{ product.name }} <br>{{ product.cost }} &#8376;</span>
                     <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
                         cart
                     </button>
                 </div>
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 2.jfif' %}" alt="Good">
-                    <span>Medicine mask <br>35 &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 3.jpg' %}" alt="Good">
-                    <span>Essentiale Forte N <br>2150 &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good">
-                    <span>Rengalin <br>750 &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 5.jpg' %}" alt="Good">
-                    <span>Pampers premium protection <br>3400 &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{% static 'pharmacy/img/home/goods/goods 6.jfif' %}" alt="Good">
-                    <span>Mezim forte <br>1200 &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
+                {% endfor %}
+{#                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">#}
+{#                    <img src="{% static 'pharmacy/img/home/goods/goods 2.jfif' %}" alt="Good">#}
+{#                    <span>Medicine mask <br>35 &#8376;</span>#}
+{#                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to#}
+{#                        cart#}
+{#                    </button>#}
+{#                </div>#}
+{#                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">#}
+{#                    <img src="{% static 'pharmacy/img/home/goods/goods 3.jpg' %}" alt="Good">#}
+{#                    <span>Essentiale Forte N <br>2150 &#8376;</span>#}
+{#                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to#}
+{#                        cart#}
+{#                    </button>#}
+{#                </div>#}
+{#                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">#}
+{#                    <img src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good">#}
+{#                    <span>Rengalin <br>750 &#8376;</span>#}
+{#                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to#}
+{#                        cart#}
+{#                    </button>#}
+{#                </div>#}
+{#                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">#}
+{#                    <img src="{% static 'pharmacy/img/home/goods/goods 5.jpg' %}" alt="Good">#}
+{#                    <span>Pampers premium protection <br>3400 &#8376;</span>#}
+{#                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to#}
+{#                        cart#}
+{#                    </button>#}
+{#                </div>#}
+{#                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">#}
+{#                    <img src="{% static 'pharmacy/img/home/goods/goods 6.jfif' %}" alt="Good">#}
+{#                    <span>Mezim forte <br>1200 &#8376;</span>#}
+{#                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to#}
+{#                        cart#}
+{#                    </button>#}
+{#                </div>#}
             </div>
         </div>
     </div>

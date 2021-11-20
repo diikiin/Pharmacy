@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import ContactForm
+from .models import Good
 
 navigation = [{'title': 'Home', 'url_name': 'home'},
               {'title': 'About us', 'url_name': 'about'},
@@ -10,9 +11,11 @@ navigation = [{'title': 'Home', 'url_name': 'home'},
 
 
 def index(request):
+    products = Good.objects.all()[:5]
     context = {
         'navigation': navigation,
-        'title': 'Home'
+        'title': 'Home',
+        'products': products
     }
     return render(request, 'pharmacy/index.html', context)
 

@@ -11,7 +11,7 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(Good)
 class GoodAdmin(admin.ModelAdmin):
-    list_display = ('img', 'name', 'description', 'company', 'cost')
+    list_display = ('name', 'description', 'company', 'cost')
     search_fields = ('name', 'company')
 
 
