@@ -241,10 +241,14 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 
 .goods-block {
     background-color: var(--color1);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     max-width: 310px;
     border-style: none;
     border-radius: 30px;
+}
+
+.goods-block:hover {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
 }
 
 .goods img {
@@ -310,6 +314,26 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     color: var(--color2);
 }
 
+/* -------------------------------- Profile page -------------------------------- */
+
+.profile-content{
+    background-color: #fff;
+}
+
+.profile-title {
+
+}
+
+.profile-info {
+
+}
+
+/* -------------------------------- Catalog page -------------------------------- */
+
+.search {
+    max-width: 450px;
+}
+
 
 /* -------------------------------- Cart page -------------------------------- */
 
@@ -335,16 +359,3 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 }
 
 
-/* -------------------------------- Cart page -------------------------------- */
-
-.profile-content{
-    background-color: #fff;
-}
-
-.profile-title {
-
-}
-
-.profile-info {
-
-}

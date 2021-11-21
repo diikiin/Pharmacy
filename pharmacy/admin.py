@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Good, Contact
+from .models import Good, OrderGood, Order, Contact
 
 
 @admin.register(Contact)
@@ -15,3 +15,5 @@ class GoodAdmin(admin.ModelAdmin):
     search_fields = ('name', 'company')
 
 
+admin.site.register(OrderGood)
+admin.site.register(Order)
