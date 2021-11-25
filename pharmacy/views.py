@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
 from .forms import ContactForm
 from .models import Good
 
@@ -29,6 +31,11 @@ def about(request):
 
 def contact(request):
     if request.method == 'POST':
+        subject = request.POST.get('name')
+        message = request.POST.get('message')
+        email = request.POST.get('email')
+        print(email)
+        send_mail(subject=subject, message=message, from_email=email, recipient_list=[settings.EMAIL_HOST_USER])
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
