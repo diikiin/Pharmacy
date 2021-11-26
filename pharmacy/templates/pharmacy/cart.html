@@ -31,20 +31,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for good in goods %}
                         <tr>
-                            <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 1.jpg' %}" alt="Good"></td>
-                            <td>Anticeptic</td>
-                            <td>Hand antiseptic. Kills 99% of all germs. provides reliable protection.</td>
-                            <td>Bayer</td>
-                            <th scope="col">200&#8376;</th>
+                            <td><img class="cart-img" src="{{ good.img.url }}" alt="Good"></td>
+                            <td>{{ good.name }}</td>
+                            <td>{{ good.description }}</td>
+                            <td>{{ good.company }}</td>
+                            <th scope="col">{{ good.cost }}&#8376;</th>
                         </tr>
-                        <tr>
+                        {% endfor %}
+                        {% comment %}<tr>
                             <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good"></td>
                             <td>Rengalin</td>
                             <td>Cough lozenges. Helps soothe sore throat.</td>
                             <td>Materia Medica</td>
                             <th scope="col">750&#8376;</th>
-                        </tr>
+                        </tr>{% endcomment %}
                         <tr>
                             <td></td>
                             <td></td>

@@ -16,7 +16,7 @@ def index(request):
     context = {
         'navigation': navigation,
         'title': 'Home',
-        'products': Good.objects.all()[:5]
+        'goods': Good.objects.all()[:5]
     }
     return render(request, 'pharmacy/index.html', context)
 
@@ -49,7 +49,7 @@ def catalog(request):
     context = {
         'navigation': navigation,
         'title': 'Catalog',
-        'products': Good.objects.all()
+        'goods': Good.objects.all()
     }
     return render(request, 'pharmacy/catalog.html', context)
 
