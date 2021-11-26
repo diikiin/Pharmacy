@@ -31,14 +31,12 @@ def about(request):
 
 def contact(request):
     if request.method == 'POST':
-        subject = request.POST.get('name')
-        message = request.POST.get('message')
-        email = request.POST.get('email')
-        print(email)
-        send_mail(subject=subject, message=message, from_email=email, recipient_list=[settings.EMAIL_HOST_USER])
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
+            subject = request.POST.get('name')
+            message = request.POST.get('message')
+            email = request.POST.get('email')
+            send_mail(subject, message, email, [settings.EMAIL_HOST_USER])
 
     context = {
         'navigation': navigation,
