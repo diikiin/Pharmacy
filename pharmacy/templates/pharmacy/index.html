@@ -22,7 +22,8 @@
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-sm-12">
                     <div class="information-block mb-lg-3 mb-md-2">
-                        <img src="{% static 'pharmacy/img/home/information/information 1.jfif' %}" alt="Online consulting">
+                        <img src="{% static 'pharmacy/img/home/information/information 1.jfif' %}"
+                             alt="Online consulting">
                     </div>
                     <h5 class="text-center">Online consulting with doctor</h5>
                 </div>
@@ -56,7 +57,8 @@
                     </button>
                 </div>
                 <div class="col-lg-5 col-md-7 px-5 mt-sm-5">
-                    <img class="discount-img" src="{% static 'pharmacy/img/home/discount/discount.jpg' %}" alt="Discount">
+                    <img class="discount-img" src="{% static 'pharmacy/img/home/discount/discount.jpg' %}"
+                         alt="Discount">
                 </div>
             </div>
         </div>
@@ -69,14 +71,17 @@
                 <div class="col-12"><h2 class="information-title text-center mb-5">Frequently bought</h2></div>
             </div>
             <div class="row justify-content-around mx-xl-5">
-                {% for good in goods %}
-                <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                    <img src="{{ good.img.url }}" alt="Good">
-                    <span>{{ good.name }} <br>{{ good.cost }} &#8376;</span>
-                    <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to
-                        cart
-                    </button>
-                </div>
+                {% for good in object_list %}
+                    <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
+                        <img src="{{ good.img.url }}" alt="Good">
+                        <a href="" class="good-category"><h6>{{ good.get_category_display }}</h6></a>
+                        <span><a href="{{ good.get_absolute_url }}"
+                                 class="good-page">{{ good.name }}</a> <br>{{ good.cost }} &#8376;</span>
+                        <button type="submit" class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add
+                            to
+                            cart
+                        </button>
+                    </div>
                 {% endfor %}
             </div>
         </div>

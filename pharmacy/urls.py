@@ -1,10 +1,20 @@
 from django.urls import path
-from . import views
+from .views import (
+    IndexView,
+    about,
+    contact,
+    catalog,
+    cart,
+    GoodDetailView
+)
+
+# app_name = 'index'
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('about/', views.about, name='about'),
-    path('contact/', views.contact, name='contact'),
-    path('catalog/', views.catalog, name='catalog'),
-    path('cart/', views.cart, name='cart')
+    path('', IndexView.as_view(), name='home'),
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
+    path('catalog/', catalog, name='catalog'),
+    path('cart/', cart, name='cart'),
+    path('good/<slug>/', GoodDetailView.as_view(), name='good')
 ]
