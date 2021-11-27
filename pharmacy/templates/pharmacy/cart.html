@@ -19,9 +19,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12"><h2 class="information-title text-center mb-5">Purchase of medicines</h2></div>
-                <div class="col-sm-12 col-lg-8 text-md-end text-center">
-                    <table class="table table-sm align-middle text-start">
-                        <thead>
+                <div class="col-lg-8 table-responsive text-md-end text-center">
+                    <table class="table table-sm table-hover align-middle text-start">
+                        <thead class="table-light">
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">Drug name</th>
@@ -32,13 +32,13 @@
                         </thead>
                         <tbody>
                         {% for good in goods %}
-                        <tr>
-                            <td><img class="cart-img" src="{{ good.img.url }}" alt="Good"></td>
-                            <td>{{ good.name }}</td>
-                            <td>{{ good.description }}</td>
-                            <td>{{ good.company }}</td>
-                            <th scope="col">{{ good.cost }}&#8376;</th>
-                        </tr>
+                            <tr>
+                                <td><img class="cart-img" src="{{ good.img.url }}" alt="Good"></td>
+                                <td>{{ good.name }}</td>
+                                <td>{{ good.description }}</td>
+                                <td>{{ good.company }}</td>
+                                <th scope="col">{{ good.cost }}&#8376;</th>
+                            </tr>
                         {% endfor %}
                         {% comment %}<tr>
                             <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good"></td>
@@ -47,6 +47,9 @@
                             <td>Materia Medica</td>
                             <th scope="col">750&#8376;</th>
                         </tr>{% endcomment %}
+
+                        </tbody>
+                        <tfoot>
                         <tr>
                             <td></td>
                             <td></td>
@@ -54,7 +57,7 @@
                             <th scope="col">Total cost</th>
                             <th scope="col">950&#8376;</th>
                         </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                     <button type="submit" class="btn btn-purchase text-uppercase">Purchase</button>
                 </div>

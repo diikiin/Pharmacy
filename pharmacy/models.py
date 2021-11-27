@@ -13,7 +13,7 @@ CATEGORY_CHOICES = (
 )
 
 
-class Good(models.Model):
+class Item(models.Model):
     img = models.ImageField('Image')
     name = models.CharField('Drug name', max_length=50)
     description = models.TextField('Description')
@@ -33,17 +33,30 @@ class Good(models.Model):
             'slug': self.slug
         })
 
+    def get_add_to_cart_url(self):
+        return reverse("add-to-cart", kwargs={
+            'slug': self.slug
+        })
 
-class OrderGood(models.Model):
-    good = models.ForeignKey(Good, on_delete=models.CASCADE)
+    def get_remove_from_cart_url(self):
+        return reverse("remove-from-cart", kwargs={
+            'slug': self.slug
+        })
+
+
+class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.name
+        return f"{self.quantity} of {self.item.name}"
 
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    goods = models.ManyToManyField(OrderGood)
+    items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
