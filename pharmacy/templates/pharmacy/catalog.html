@@ -15,12 +15,19 @@
                 </div>
             </div>
             <div class="row justify-content-around mx-xl-5">
-                {% for good in goods %}
+                {% for item in items %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
-                        <img src="{{ good.img.url }}" alt="Good">
-                        <a href="" class="good-category"><h6>{{ good.get_category_display }}</h6></a>
-                        <span>{{ good.name }} <br>{{ good.cost }} &#8376;</span>
-                        <a href="{{ object.get_add_to_cart_url }}"
+                        <img src="{{ item.img.url }}" alt="Good">
+                        <a href="" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
+                        <span class="good-span"><a href="{{ item.get_absolute_url }}"
+                                                   class="good-page">{{ item.name }}
+                            {% if item.discount %}
+                                <br>{{ item.discount_cost }} &#8376;</a>
+                                <span class="badge primary">Discount</span>
+                            {% else %}
+                                <br>{{ item.cost }} &#8376;</a>
+                            {% endif %}</span>
+                        <a href="{{ item.get_add_to_cart_url }}"
                            class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase pt-1">add to cart
                         </a>
                     </div>

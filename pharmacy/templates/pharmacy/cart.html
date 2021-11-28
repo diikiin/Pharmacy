@@ -25,37 +25,38 @@
                         <tr>
                             <th scope="col"></th>
                             <th scope="col">Drug name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Company manufacturer</th>
-                            <th scope="col">Сost</th>
+                            <th scope="col">Cost</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Item Cost</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for good in goods %}
+                        {% for order_item in objects.items.all %}
                             <tr>
-                                <td><img class="cart-img" src="{{ good.img.url }}" alt="Good"></td>
-                                <td>{{ good.name }}</td>
-                                <td>{{ good.description }}</td>
-                                <td>{{ good.company }}</td>
-                                <th scope="col">{{ good.cost }}&#8376;</th>
+                                <td><img class="cart-img" src="{{ order_item.item.img.url }}" alt="Good"></td>
+                                <td><a class="text-decoration-none text-black" href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a></td>
+                                <td>{{ order_item.item.cost }}&#8376;</td>
+                                <td>{{ order_item.quantity }}</td>
+                                <td>
+                                    {% if order_item.item.discount %}
+                                        {{ order_item.get_total_discount_item_cost }}&#8376;
+                                        <span class="badge primary">(Saving {{ order_item.get_amount_saved }}&#8376;)</span>
+                                    {% else %}
+                                        {{ order_item.get_total_item_cost }}&#8376;
+                                    {% endif %}
+                                </td>
+                                <td><a href="{{ order_item.item.get_remove_from_cart_url }}"
+                                       class="btn btn-remove-from-cart btn-remove-from-cart-sm">
+                                    <i class="bi bi-trash"></i>
+                                </a></td>
                             </tr>
                         {% endfor %}
-                        {% comment %}<tr>
-                            <td><img class="cart-img" src="{% static 'pharmacy/img/home/goods/goods 4.jpg' %}" alt="Good"></td>
-                            <td>Rengalin</td>
-                            <td>Cough lozenges. Helps soothe sore throat.</td>
-                            <td>Materia Medica</td>
-                            <th scope="col">750&#8376;</th>
-                        </tr>{% endcomment %}
-
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <th scope="col">Total cost</th>
-                            <th scope="col">950&#8376;</th>
+                            <th scope="col" colspan="4" class="text-end">Total Order Cost</th>
+                            <th scope="col">{{ objects.get_total_cost }}&#8376;</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -63,6 +64,7 @@
                 </div>
             </div>
         </div>
+
         <script async
                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680276229550252"
                 crossorigin="anonymous"></script>

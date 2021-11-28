@@ -224,7 +224,7 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 }
 
 .btn-add-to-cart-md {
-    max-width: 150px;
+    max-width: 200px;
     height: 40px;
     padding: 5px 10px;
 }
@@ -233,6 +233,41 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     max-width: 180px;
     height: 30px;
     padding: 0 30px;
+}
+
+.btn-remove-from-cart {
+    width: 100%;
+    border-style: none;
+    border-radius: 40px;
+    margin: 0 auto;
+    color: var(--bs-black-rgb);
+    background-color: var(--color4);
+}
+
+.btn-remove-from-cart-md {
+    max-width: 250px;
+    height: 40px;
+    padding: 5px 10px;
+}
+
+.btn-remove-from-cart-sm {
+    width: 30px;
+    height: 30px;
+    background-color: inherit;
+    color: red;
+    border: solid gray 1px;
+    border-radius: 5px;
+    padding: 2px 0 0;
+}
+
+.btn-remove-from-cart-sm:hover {
+    width: 30px;
+    height: 30px;
+    background-color: inherit;
+    color: red;
+    border: solid red 1px;
+    border-radius: 5px;
+    padding: 2px 0 0;
 }
 
 .blue {
@@ -287,7 +322,7 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     color: var(--bs-white);
 }
 
-.goods span {
+.good-span {
     display: block;
     font-size: 1.125rem;
     margin-bottom: 5px;
@@ -317,7 +352,11 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 }
 
 .purple {
-  background-color: #9c27b0 !important;
+    background-color: #9c27b0 !important;
+}
+
+.primary {
+    background-color: #0d6efd !important;
 }
 
 /* -------------------------------- Contact page -------------------------------- */

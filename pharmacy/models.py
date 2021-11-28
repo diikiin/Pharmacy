@@ -29,7 +29,7 @@ class Item(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("good", kwargs={
+        return reverse("item", kwargs={
             'slug': self.slug
         })
 
@@ -53,6 +53,20 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"{self.quantity} of {self.item.name}"
 
+    def get_total_item_cost(self):
+        return self.quantity * self.item.cost
+
+    def get_total_discount_item_cost(self):
+        return self.quantity * self.item.discount_cost
+
+    def get_amount_saved(self):
+        return self.get_total_item_cost() - self.get_total_discount_item_cost()
+
+    def get_final_cost(self):
+        if self.item.discount:
+            return self.get_total_discount_item_cost()
+        return self.get_total_item_cost()
+
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -63,6 +77,12 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.email
+
+    def get_total_cost(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_final_cost()
+        return total
 
 
 class Contact(models.Model):
