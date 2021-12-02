@@ -35,9 +35,14 @@
                         {% for order_item in objects.items.all %}
                             <tr>
                                 <td><img class="cart-img" src="{{ order_item.item.img.url }}" alt="Good"></td>
-                                <td><a class="text-decoration-none text-black" href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a></td>
+                                <td><a class="text-decoration-none text-black"
+                                       href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a></td>
                                 <td>{{ order_item.item.cost }}&#8376;</td>
-                                <td>{{ order_item.quantity }}</td>
+                                <td>
+                                    <a href="{% url 'remove-single-item-from-cart' order_item.item.slug %}"><i class="bi bi-dash fs-5"></i></a>
+                                    {{ order_item.quantity }}
+                                    <a href="{{ order_item.item.get_add_to_cart_url }}"><i class="bi bi-plus fs-5"></i></a>
+                                </td>
                                 <td>
                                     {% if order_item.item.discount %}
                                         {{ order_item.get_total_discount_item_cost }}&#8376;
@@ -51,6 +56,10 @@
                                     <i class="bi bi-trash"></i>
                                 </a></td>
                             </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan='5'>Your cart is empty</td>
+                            </tr>
                         {% endfor %}
                         </tbody>
                         <tfoot>
@@ -60,7 +69,11 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <button type="submit" class="btn btn-purchase text-uppercase">Purchase</button>
+                    <div class="row-cols-2">
+                        <a href='{% url 'catalog' %}' class='btn btn-shop text-uppercase'>Continue shopping</a>
+                        <a href="{% url 'checkout' %}" class="btn btn-purchase text-uppercase">Purchase</a>
+                    </div>
+
                 </div>
             </div>
         </div>

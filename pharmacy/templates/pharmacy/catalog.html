@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row justify-content-around mx-xl-5">
-                {% for item in items %}
+                {% for item in object_list %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
                         <img src="{{ item.img.url }}" alt="Good">
                         <a href="" class="good-category"><h6>{{ item.get_category_display }}</h6></a>

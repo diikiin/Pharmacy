@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'pharmacy',
     'account',
     'phonenumber_field',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

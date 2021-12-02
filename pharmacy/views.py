@@ -2,11 +2,14 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
+
+from account.models import User
 from .forms import ContactForm
 from .models import Item, OrderItem, Order
 
@@ -18,15 +21,13 @@ navigation = [{'title': 'Home', 'url_name': 'home'},
               {'title': 'Account'}]
 
 
-class IndexView(ListView):
-    model = Item
-    template_name = 'pharmacy/index.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['navigation'] = navigation
-        context['title'] = 'Home'
-        return context
+def index(request):
+    context = {
+        'navigation': navigation,
+        'title': 'Home',
+        'items': Item.objects.all()[:6]
+    }
+    return render(request, 'pharmacy/index.html', context)
 
 
 def about(request):
@@ -53,13 +54,15 @@ def contact(request):
     return render(request, 'pharmacy/contact.html', context)
 
 
-def catalog(request):
-    context = {
-        'navigation': navigation,
-        'title': 'Catalog',
-        'items': Item.objects.all()
-    }
-    return render(request, 'pharmacy/catalog.html', context)
+class CatalogView(ListView):
+    model = Item
+    template_name = 'pharmacy/catalog.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['navigation'] = navigation
+        context['title'] = 'Catalog'
+        return context
 
 
 class ItemDetailView(DetailView):
@@ -102,17 +105,17 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "This item quantity was updated.")
-            return redirect("item", slug=slug)
+            return redirect("cart")
         else:
             order.items.add(order_item)
             messages.info(request, "This item was added to your cart.")
-            return redirect("item", slug=slug)
+            return redirect("cart")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
         messages.info(request, "This item was added to your cart.")
-        return redirect("item", slug=slug)
+        return redirect("cart")
 
 
 @login_required
@@ -130,12 +133,56 @@ def remove_from_cart(request, slug):
                 user=request.user,
                 ordered=False
             )[0]
+            order_item.quantity = 1
+            order_item.save()
             order.items.remove(order_item)
             messages.info(request, "This item was removed from your cart.")
-            return redirect("item", slug=slug)
+            return redirect("cart")
         else:
             messages.info(request, "This item was not in your cart.")
-            return redirect("item", slug=slug)
+            return redirect("cart")
     else:
         messages.info(request, "You do not have an active order")
-        return redirect("item", slug=slug)
+        return redirect("cart")
+
+@login_required
+def remove_single_item_from_cart(request, slug):
+    item = get_object_or_404(Item, slug=slug)
+    order_qs = Order.objects.filter(
+        user=request.user,
+        ordered=False
+    )
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(item__slug=item.slug).exists():
+            order_item = OrderItem.objects.filter(
+                item=item,
+                user=request.user,
+                ordered=False
+            )[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order.items.remove(order_item)
+            messages.info(request, "This item quantity was updated.")
+            return redirect("cart")
+        else:
+            messages.info(request, "This item was not in your cart")
+            return redirect("cart")
+    else:
+        messages.info(request, "You do not have an active order")
+        return redirect("cart")
+
+def checkout(request):
+    user = request.user
+    user_id = user.id
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return HttpResponse("That user doesn't exist")
+    context = {
+        'user': user,
+        'navigation': navigation
+    }
+    return render(request, 'pharmacy/checkout.html', context)

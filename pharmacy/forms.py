@@ -18,3 +18,15 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['name', 'phone', 'email', 'message']
+
+
+PAYMENT_CHOICES = (
+    ('C', 'Cash'),
+    ('On', 'Online')
+)
+
+
+class CheckoutForm(forms.Form):
+    shipping_address = forms.CharField(required=False)
+    payment_option = forms.ChoiceField(
+        widget=forms.RadioSelect, choices=PAYMENT_CHOICES)

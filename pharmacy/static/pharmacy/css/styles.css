@@ -435,6 +435,23 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     max-width: 100px;
 }
 
+.btn-shop {
+    width: 100%;
+    max-width: 250px;
+    height: 55px;
+    border-style: none;
+    border-radius: 28px;
+    margin: 0 auto;
+    padding-top: 13px;
+    color: var(--bs-white);
+    background-color: var(--color1);
+}
+
+.btn-shop:hover {
+    color: var(--bs-black-rgb);
+    background-color: var(--color4);
+}
+
 .btn-purchase {
     width: 100%;
     max-width: 250px;
@@ -442,13 +459,14 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     border-style: none;
     border-radius: 28px;
     margin: 0 auto;
-    color: var(--bs-white);
-    background-color: var(--color1);
+    padding-top: 13px;
+    color: var(--bs-black-rgb);
+    background-color: var(--color4);
 }
 
 .btn-purchase:hover {
-    color: var(--bs-black-rgb);
-    background-color: var(--color4);
+    color: var(--bs-white);
+    background-color: var(--color1);
 }
 
 
