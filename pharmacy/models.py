@@ -74,6 +74,9 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
+    address = models.CharField(blank=True, null=True, max_length=100)
+    phone = PhoneNumberField(null=True, blank=True)
+    payment = models.CharField(blank=True, null=True, max_length=20)
 
     def __str__(self):
         return self.user.email

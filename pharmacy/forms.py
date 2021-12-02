@@ -27,6 +27,7 @@ PAYMENT_CHOICES = (
 
 
 class CheckoutForm(forms.Form):
-    shipping_address = forms.CharField(required=False)
-    payment_option = forms.ChoiceField(
-        widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
+    address = forms.CharField(required=False)
+    name = forms.TextInput()
+    phone = PhoneNumberField()
+    payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)

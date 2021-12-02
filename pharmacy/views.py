@@ -10,7 +10,7 @@ from django.conf import settings
 from django.utils import timezone
 
 from account.models import User
-from .forms import ContactForm
+from .forms import ContactForm, CheckoutForm
 from .models import Item, OrderItem, Order
 
 navigation = [{'title': 'Home', 'url_name': 'home'},
@@ -145,6 +145,7 @@ def remove_from_cart(request, slug):
         messages.info(request, "You do not have an active order")
         return redirect("cart")
 
+
 @login_required
 def remove_single_item_from_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -174,7 +175,9 @@ def remove_single_item_from_cart(request, slug):
         messages.info(request, "You do not have an active order")
         return redirect("cart")
 
+
 def checkout(request):
+    form = CheckoutForm()
     user = request.user
     user_id = user.id
     try:
@@ -183,6 +186,39 @@ def checkout(request):
         return HttpResponse("That user doesn't exist")
     context = {
         'user': user,
-        'navigation': navigation
+        'navigation': navigation,
+        'form': form
     }
     return render(request, 'pharmacy/checkout.html', context)
+
+
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            form = CheckoutForm()
+            context = {
+                'navigation': navigation,
+                'form': form,
+                'order': order,
+            }
+            return render(self.request, "pharmacy/checkout.html", context)
+        except ObjectDoesNotExist:
+            messages.info(self.request, "You do not have an active order")
+            return redirect("cart")
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                order.address = self.request.POST.get('address')
+                order.phone = self.request.POST.get('phone')
+                order.name = self.request.POST.get('name')
+                order.payment_option = self.request.POST.get('payment_option')
+                order.ordered = True
+                order.save()
+                return redirect('home')
+        except ObjectDoesNotExist:
+            messages.warning(self.request, "You do not have an active order")
+            return redirect("cart")
