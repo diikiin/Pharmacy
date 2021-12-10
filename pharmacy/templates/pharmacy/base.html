@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- shortcut icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'pharmacy/img/home/main/icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="/media/img/icon.png">
     <title>{{ title }}</title>
 
     <!-- bootstrap -->
@@ -19,6 +19,8 @@
     <!-- css styles -->
     <link rel="stylesheet" type="text/css" href="{% static 'pharmacy/css/styles.css' %}">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 </head>
 <body>
 <!-- -----------navbar------------ -->
@@ -26,7 +28,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
         <div class="container mx-auto">
             <a href="index.html" class="navbar-brand ms-xl-5 me-sm-0 fs-2">
-                <img class="navbar-logo" src="{% static 'pharmacy/img/home/main/icon.png' %}" alt="Company Logo">Almaty
+                <img class="navbar-logo" src="/media/img/icon.png" alt="Company Logo">Almaty
                 Pharmacy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent"
                     aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,6 +141,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+
+<!-- js animation script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 <!-- ad script -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680276229550252"
