@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
+from django.conf import settings
 
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, EditForm
 from .models import User
+from pharmacy.models import Order
 
 navigation = [{'title': 'Home', 'url_name': 'home'},
               {'title': 'About us', 'url_name': 'about'},
@@ -90,8 +92,8 @@ def logout(request):
 def profile(request, *args, **kwargs):
     context = {
         'navigation': navigation
-        }
-    user=request.user
+    }
+    user = request.user
     user_id = user.id
     try:
         user = User.objects.get(pk=user_id)
@@ -107,6 +109,48 @@ def profile(request, *args, **kwargs):
     return render(request, 'account/profile.html', context)
 
 
+def update_profile(request, *args, **kwargs):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    user_id = request.user.id
+    try:
+        user = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return HttpResponse("Something went wrong")
+    context = {
+        'navigation': navigation
+    }
+    if request.POST:
+        form = EditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        else:
+            form = EditForm(request.POST, request.FILES, instance=request.user,
+                            initial={
+                                "id": user.pk,
+                                "first_name": user.first_name,
+                                "last_name": user.last_name,
+                                "email": user.email,
+                                "phone": user.phone,
+                                "address": user.address
+                            })
+            context['edit_form'] = form
+    else:
+        form = EditForm(request.POST, request.FILES, instance=request.user,
+                        initial={
+                            "id": user.pk,
+                            "first_name": user.first_name,
+                            "last_name": user.last_name,
+                            "email": user.email,
+                            "phone": user.phone,
+                            "address": user.address
+                        })
+        # context['edit_form'] = form
+    context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+    return render(request, 'account/update_profile.html', context)
+
+
 def password_change(request):
     context = {
         'navigation': navigation
@@ -115,7 +159,18 @@ def password_change(request):
 
 
 def orders(request):
+    user_id = request.user.id
+    try:
+        user = User.objects.get(pk=user_id)
+        all_orders = Order.objects.all()
+        user_orders = []
+        for order in all_orders:
+            if order.user == user:
+                user_orders.append(order)
+    except User.DoesNotExist:
+        return HttpResponse("That user doesn't exist")
     context = {
-        'navigation': navigation
+        'navigation': navigation,
+        'orders': user_orders
     }
     return render(request, 'account/orders.html', context)

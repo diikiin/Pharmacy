@@ -23,6 +23,31 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError(f'Email {email} is already in use')
 
 
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email', 'phone', 'address']
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].lower()
+        try:
+            account = User.objects.exclude(pk=self.instance.pk).get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(f'Email {email} is already in use')
+
+    def save(self, commit=True):
+        user = super(EditForm, self).save(commit=False)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.email = self.cleaned_data['email']
+        user.phone = self.cleaned_data['phone']
+        user.address = self.cleaned_data['address']
+        if commit:
+            user.save()
+        return user
+
+
 class LoginForm(forms.ModelForm):
     password = forms.PasswordInput()
 
@@ -36,4 +61,3 @@ class LoginForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(email=email, password=password):
                 raise forms.ValidationError("Invalid Login")
-

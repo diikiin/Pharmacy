@@ -6,7 +6,8 @@ from .views import (
     profile,
     orders,
     password_change,
-    password_reset
+    password_reset,
+    update_profile
 )
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
     path('profile/', profile, name='profile'),
+    path('edit-profile/', update_profile, name='edit'),
     path('orders/', orders, name='orders'),
     path('password-change/', password_change, name='password change'),
     path('password-reset/', password_reset, name='password reset')

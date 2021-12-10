@@ -42,10 +42,11 @@ header {
 .navbar-dark .navbar-nav .nav-link:hover {
     color: var(--color3);
 }
+
 /* ------------------------------------- */
 
 /* Navbar active page */
-.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show>.nav-link {
+.navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .show > .nav-link {
     color: #000;
 }
 
@@ -59,15 +60,16 @@ header {
 .navbar-dark .navbar-nav .nav-link.sign-in:hover {
     color: #fff;
 }
+
 /* ------------------------------------- */
 
 /* Navbar dropdown list */
 nav.navbar .dropdown:hover > .dropdown-menu {
- display: block;
+    display: block;
 }
 
-@media only screen and (max-device-width: 992px){
-    nav.navbar .dropdown:hover .dropdown-menu{
+@media only screen and (max-device-width: 992px) {
+    nav.navbar .dropdown:hover .dropdown-menu {
         display: none;
     }
 }
@@ -176,22 +178,6 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     max-height: 350px;
     /*object-fit: fill;*/
 }
-
-/*.information-block {*/
-/*    max-width: 100%;*/
-/*    max-height: 460px;*/
-/*    text-align: center;*/
-/*}*/
-
-/*.information-block img{*/
-/*    width: 390px;*/
-/*    max-width: 100%;*/
-/*    height: 400px;*/
-/*    object-fit: cover;*/
-/*    border-style: none;*/
-/*    border-radius: 20px;*/
-/*    box-shadow: 0 5px 10px rgba(0,0,0,0.5);*/
-/*}*/
 
 /* ++++++++++++++++++++++++++++++++ discount ++++++++++++++++++++++++++++++++ */
 
@@ -305,14 +291,14 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 
 .goods-block {
     background-color: var(--color1);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     max-width: 310px;
     border-style: none;
     border-radius: 30px;
 }
 
 .goods-block:hover {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .goods img {
@@ -381,6 +367,7 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     color: var(--bs-black-rgb);
     background-color: var(--color2);
 }
+
 /* -------------------------------- About page -------------------------------- */
 
 .about-img {
@@ -416,7 +403,7 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 
 /* -------------------------------- Profile page -------------------------------- */
 
-.profile-content{
+.profile-content {
     background-color: #fff;
 }
 
@@ -426,6 +413,12 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 
 .profile-info {
 
+}
+
+.profile-input {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* -------------------------------- Catalog page -------------------------------- */

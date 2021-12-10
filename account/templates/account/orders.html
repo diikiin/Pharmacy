@@ -1,6 +1,29 @@
 {% extends 'pharmacy/base.html' %}
-{% load static %}
 
 {% block content %}
-
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="card profile-content">
+                        <div class="profile-info">
+                            <div class="profile-title text-center"><h1>My orders</h1></div>
+                            <div class="profile-info">
+                                {% for order in orders %}
+                                    <div class="row mt-2 justify-content-center">
+                                    <div class="col-md-4 ps-5"><p class="mt-4 mb-1 field-heading">Ordered products</p>
+                                        {% for item in order.items.all %}
+                                            <h5>{{ item }}</h5>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-4"><p class="mt-4 mb-1 field-heading">Ordered date</p>
+                                        <h5>{{ order.ordered_date }}</h5></div>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 {% endblock %}
