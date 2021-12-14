@@ -59,5 +59,11 @@ class LoginForm(forms.ModelForm):
         if self.is_valid():
             email = self.cleaned_data['email']
             password = self.cleaned_data['password']
-            if not authenticate(email=email, password=password):
-                raise forms.ValidationError("Invalid Login")
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password):
+                    return self.cleaned_data
+                else:
+                    self.add_error("password", forms.ValidationError("Password is wrong"))
+            except User.DoesNotExist:
+                self.add_error("email", forms.ValidationError("User does not exist"))

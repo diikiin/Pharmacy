@@ -63,8 +63,8 @@ def login(request, *args, **kwargs):
                 if destination:
                     return redirect(destination)
                 return redirect('home')
-            else:
-                context['login_form'] = form
+        else:
+            context['login_form'] = form
 
     return render(request, 'account/login.html', context)
 
