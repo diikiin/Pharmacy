@@ -292,7 +292,7 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 .goods-block {
     background-color: var(--color1);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    max-width: 310px;
+    max-width: 305px;
     border-style: none;
     border-radius: 30px;
 }
@@ -424,7 +424,8 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 /* -------------------------------- Catalog page -------------------------------- */
 
 .search {
-    max-width: 450px;
+    width: 80%;
+    max-width: 400px;
 }
 
 
