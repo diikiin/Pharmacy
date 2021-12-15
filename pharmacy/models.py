@@ -4,12 +4,12 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.shortcuts import reverse
 
 CATEGORY_CHOICES = (
-    ('AB', 'Antibiotics'),
-    ('AS', 'Antiseptics'),
-    ('PK', 'Painkillers'),
-    ('AC', 'Against cough'),
-    ('FB', 'For baby'),
-    ('V', 'Vitamins')
+    ('Antibiotics', 'Antibiotics'),
+    ('Antiseptics', 'Antiseptics'),
+    ('Painkillers', 'Painkillers'),
+    ('Against cough', 'Against cough'),
+    ('For baby', 'For baby'),
+    ('Vitamins', 'Vitamins')
 )
 
 

@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView, View
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
+from django.db.models import Q
 
 from account.models import User
 from .forms import ContactForm, CheckoutForm
@@ -63,6 +64,24 @@ class CatalogView(ListView):
         context['navigation'] = navigation
         context['title'] = 'Catalog'
         return context
+
+
+class SearchView(ListView):
+    model = Item
+    template_name = 'pharmacy/search.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['navigation'] = navigation
+        context['title'] = 'Catalog'
+        return context
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        object_list = Item.objects.filter(
+            Q(name__icontains=query) | Q(category__icontains=query)
+        )
+        return object_list
 
 
 class ItemDetailView(DetailView):
