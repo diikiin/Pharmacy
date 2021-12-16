@@ -73,13 +73,13 @@ class OrderItem(models.Model):
         else:
             return self.get_total_item_cost() - self.get_total_special_item_cost()
 
-
     def get_final_cost(self):
         if self.item.discount:
             return self.get_total_discount_item_cost()
         elif self.item.special:
             return self.get_total_special_item_cost()
         return self.get_total_item_cost()
+
 
 
 class Order(models.Model):
@@ -100,6 +100,11 @@ class Order(models.Model):
         for order_item in self.items.all():
             total += order_item.get_final_cost()
         return total
+
+    def delete_order_url(self):
+        return reverse("delete-order", kwargs={
+            'pk': self.pk
+        })
 
 
 class Contact(models.Model):

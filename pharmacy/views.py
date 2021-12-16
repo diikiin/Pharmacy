@@ -197,7 +197,9 @@ def remove_single_item_from_cart(request, slug):
 
 
 def delete_order(request, pk):
-    order = Item.objects.get(pk=pk)
+    order = Order.objects.get(pk=pk)
+    for order_item in order.items.all():
+        order_item.delete()
     order.delete()
     return redirect('orders')
 

@@ -438,6 +438,8 @@ nav.navbar .dropdown:hover > .dropdown-menu {
 .cart-img {
     min-width: 20px;
     max-width: 100px;
+    min-height: 20px;
+    max-height: 100px;
 }
 
 .btn-shop {

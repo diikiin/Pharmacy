@@ -11,22 +11,33 @@
                             <div class="profile-info">
                                 {% for order in orders %}
                                     <div class="row mt-2 justify-content-center">
-                                    <div class="col-md-4 ps-5"><p class="mt-4 mb-1 field-heading">Ordered products</p>
-                                        {% for item in order.items.all %}
-                                            <h5>{{ item }}</h5>
-                                        {% endfor %}
+                                        <div class="col-md-4 ps-5"><p class="mt-3 mb-2 field-heading">Ordered
+                                            products</p>
+                                            {% for item in order.items.all %}
+                                                <h5>{{ item }}</h5>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-md-4"><p class="mt-3 mb-2 field-heading">Ordered date</p>
+                                            <h5>{{ order.ordered_date }}</h5>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <a href="{{ order.delete_order_url }}"
+                                               class="btn btn-remove-from-cart btn-remove-from-cart-sm mt-4 mb-1 field-heading">
+                                            <i class="bi bi-trash"></i></a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4"><p class="mt-4 mb-1 field-heading">Ordered date</p>
-                                        <h5>{{ order.ordered_date }}</h5></div>
-                                    <div class="col-md-4"><a href="{{ order.delete }}"
-                                       class="btn btn-remove-from-cart btn-remove-from-cart-sm">
-                                        <i class="bi bi-trash"></i></a></div>
+                                {% empty %}
+                                    <div class="row mt-2 justify-content-center">
+                                        <h2 class="text-center">You do not have an order</h2>
+                                        <a href="{% url 'catalog' %}" class="btn contact-btn mb-3 fs-5">Go to
+                                            catalog</a>
+                                    </div>
                                 {% endfor %}
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 {% endblock %}

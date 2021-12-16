@@ -33,7 +33,7 @@
                         <tbody>
                         {% for order_item in objects.items.all %}
                             <tr>
-                                <td><img class="cart-img" src="{{ order_item.item.img.url }}" alt="Good"></td>
+                                <td class="text-center"><img class="cart-img" src="{{ order_item.item.img.url }}" alt="Good"></td>
                                 <td><a class="text-decoration-none text-black"
                                        href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a></td>
                                 <td> {% if order_item.item.discount %}
