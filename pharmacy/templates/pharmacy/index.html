@@ -71,16 +71,14 @@
         <div class="container">
             <div class="row justify-content-around">
                 <div class="col-lg-6 col-md-5 mt-lg-3 mt-xl-5 text-center">
-                    <h1>20% off</h1>
-                    <p class="mt-lg-3 mt-xl-5">Korotkov balms for the normalization of the stomach, intestines and liver
-                        and for cleansing from parasites</p>
-                    <button type="submit"
-                            class="btn btn-add-to-cart btn-add-to-cart-lg btn-lg text-uppercase mt-lg-3 mt-xl-5">add to
-                        cart
-                    </button>
+                    <h1>{{ special.get_special_percent }}% off</h1>
+                    <p class="mt-lg-3 mt-xl-5">{{ special.description }}</p>
+                    <a href="{{ special.get_add_to_cart_url }}"
+                       class="btn btn-add-to-cart btn-add-to-cart-lg btn-lg text-uppercase mt-lg-3 mt-xl-5">add to cart
+                    </a>
                 </div>
                 <div class="col-lg-5 col-md-7 px-5 mt-sm-5">
-                    <img class="discount-img" src="/media/img/discount.jpg"
+                    <img class="discount-img" src="{{ special.img.url }}"
                          alt="Discount">
                 </div>
             </div>

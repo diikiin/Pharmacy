@@ -21,12 +21,17 @@ class Item(models.Model):
     cost = models.IntegerField('Cost')
     discount = models.BooleanField('Discount')
     discount_cost = models.IntegerField('Discount cost', default=0)
+    special = models.BooleanField('Special', default=False)
+    special_cost = models.IntegerField('Special cost', default=0)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=15)
     quantity = models.IntegerField(default=1)
     slug = models.SlugField()
 
     def __str__(self):
         return self.name
+
+    def get_special_percent(self):
+        return int(100 - (self.special_cost / self.cost) * 100)
 
     def get_absolute_url(self):
         return reverse("item", kwargs={
@@ -59,12 +64,21 @@ class OrderItem(models.Model):
     def get_total_discount_item_cost(self):
         return self.quantity * self.item.discount_cost
 
+    def get_total_special_item_cost(self):
+        return self.quantity * self.item.special_cost
+
     def get_amount_saved(self):
-        return self.get_total_item_cost() - self.get_total_discount_item_cost()
+        if self.item.discount:
+            return self.get_total_item_cost() - self.get_total_discount_item_cost()
+        else:
+            return self.get_total_item_cost() - self.get_total_special_item_cost()
+
 
     def get_final_cost(self):
         if self.item.discount:
             return self.get_total_discount_item_cost()
+        elif self.item.special:
+            return self.get_total_special_item_cost()
         return self.get_total_item_cost()
 
 

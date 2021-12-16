@@ -36,7 +36,14 @@
                                 <td><img class="cart-img" src="{{ order_item.item.img.url }}" alt="Good"></td>
                                 <td><a class="text-decoration-none text-black"
                                        href="{{ order_item.item.get_absolute_url }}">{{ order_item.item.name }}</a></td>
-                                <td>{{ order_item.item.cost }}&#8376;</td>
+                                <td> {% if order_item.item.discount %}
+                                    {{ order_item.item.discount_cost }}&#8376;
+                                    {% elif order_item.item.special %}
+                                    {{ order_item.item.special_cost }}&#8376;
+                                    {% else %}
+                                    {{ order_item.item.cost }}&#8376;
+                                    {% endif %}
+                                </td>
                                 <td>
                                     <a href="{% url 'remove-single-item-from-cart' order_item.item.slug %}"><i class="bi bi-dash fs-5"></i></a>
                                     {{ order_item.quantity }}
@@ -46,6 +53,9 @@
                                     {% if order_item.item.discount %}
                                         {{ order_item.get_total_discount_item_cost }}&#8376;
                                         <span class="badge primary">(Saving {{ order_item.get_amount_saved }}&#8376;)</span>
+                                    {% elif order_item.item.special %}
+                                        {{ order_item.get_total_special_item_cost }}&#8376;
+                                        <span class="badge success">(Saving {{ order_item.get_amount_saved }}&#8376;)</span>
                                     {% else %}
                                         {{ order_item.get_total_item_cost }}&#8376;
                                     {% endif %}

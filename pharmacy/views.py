@@ -26,7 +26,8 @@ def index(request):
     context = {
         'navigation': navigation,
         'title': 'Home',
-        'items': Item.objects.all()[:6]
+        'items': Item.objects.all()[:6],
+        'special': Item.objects.get(special__exact=True)
     }
     return render(request, 'pharmacy/index.html', context)
 
@@ -195,20 +196,10 @@ def remove_single_item_from_cart(request, slug):
         return redirect("cart")
 
 
-def checkout(request):
-    form = CheckoutForm()
-    user = request.user
-    user_id = user.id
-    try:
-        user = User.objects.get(pk=user_id)
-    except User.DoesNotExist:
-        return HttpResponse("That user doesn't exist")
-    context = {
-        'user': user,
-        'navigation': navigation,
-        'form': form
-    }
-    return render(request, 'pharmacy/checkout.html', context)
+def delete_order(request, pk):
+    order = Item.objects.get(pk=pk)
+    order.delete()
+    return redirect('orders')
 
 
 class CheckoutView(View):

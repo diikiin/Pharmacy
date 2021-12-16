@@ -10,11 +10,9 @@ from .views import (
     add_to_cart,
     remove_from_cart,
     remove_single_item_from_cart,
-    checkout,
     CheckoutView
 )
 
-# app_name = 'index'
 
 urlpatterns = [
     path('', index, name='home'),

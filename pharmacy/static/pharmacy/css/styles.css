@@ -348,6 +348,10 @@ nav.navbar .dropdown:hover > .dropdown-menu {
     background-color: #9c27b0 !important;
 }
 
+.success {
+    background-color: #198754 !important;
+}
+
 .primary {
     background-color: #0d6efd !important;
 }

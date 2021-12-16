@@ -23,6 +23,9 @@
                             {% if item.discount %}
                                 <br>{{ item.discount_cost }} &#8376;</a>
                                 <span class="badge primary">Discount</span>
+                            {% elif item.special %}
+                                <br>{{ item.special_cost }} &#8376;</a>
+                                <span class="badge success">Special</span>
                             {% else %}
                                 <br>{{ item.cost }} &#8376;</a>
                             {% endif %}</span>
