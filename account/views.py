@@ -74,7 +74,14 @@ def password_reset(request):
     context = {
         'title': 'Password Reset'
     }
-    return render(request, 'account/reset_password.html', context)
+    return render(request, 'account/password_reset.html', context)
+
+
+def password_change(request):
+    context = {
+        'title': 'Change password'
+    }
+    return render(request, 'account/password_change.html', context)
 
 
 def logout(request):
@@ -142,13 +149,6 @@ def update_profile(request, *args, **kwargs):
         # context['edit_form'] = form
     context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, 'account/update_profile.html', context)
-
-
-def password_change(request):
-    context = {
-        'title': 'Change password'
-    }
-    return render(request, 'account/password_change.html', context)
 
 
 def orders(request):
