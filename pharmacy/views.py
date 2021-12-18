@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, View
 from django.core.mail import send_mail
@@ -10,7 +9,6 @@ from django.conf import settings
 from django.utils import timezone
 from django.db.models import Q
 
-from account.models import User
 from .forms import ContactForm, CheckoutForm
 from .models import Item, OrderItem, Order
 
@@ -155,7 +153,10 @@ def remove_from_cart(request, slug):
             )[0]
             order_item.quantity = 1
             order_item.save()
+            order_item.delete()
             order.items.remove(order_item)
+            if not order.items.exists():
+                order.delete()
             messages.info(request, "This item was removed from your cart.")
             return redirect("cart")
         else:
