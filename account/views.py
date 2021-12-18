@@ -70,18 +70,18 @@ def get_redirect_if_exists(request):
     return redirect
 
 
-def password_reset(request):
-    context = {
-        'title': 'Password Reset'
-    }
-    return render(request, 'account/password_reset.html', context)
-
-
-def password_change(request):
-    context = {
-        'title': 'Change password'
-    }
-    return render(request, 'account/password_change.html', context)
+# def password_reset(request):
+#     context = {
+#         'title': 'Password Reset'
+#     }
+#     return render(request, 'account/password_reset.html', context)
+#
+#
+# def password_change(request):
+#     context = {
+#         'title': 'Change password'
+#     }
+#     return render(request, 'account/password_change.html', context)
 
 
 def logout(request):
