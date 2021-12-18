@@ -7,9 +7,11 @@
                 <div class="col-sm-12 col-md-3"><h2>Catalog</h2></div>
                 <div class="col-sm-12 col-md-9 text-end">
                     <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'search' %}">
-                        <input class="form-control search d-inline-block" name="q" id="q" type="search" placeholder="Search"
+                        <input class="form-control search d-inline-block" name="q" id="q" type="search"
+                               placeholder="Search"
                                aria-label="Search">
-                        <button class="btn btn-outline-success d-inline-block" type="submit"><i class="bi bi-search"></i></button>
+                        <button class="btn btn-outline-success d-inline-block" type="submit"><i
+                                class="bi bi-search"></i></button>
                     </form>
                 </div>
             </div>
@@ -17,7 +19,8 @@
                 {% for item in object_list %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
                         <img src="{{ item.img.url }}" alt="Good">
-                        <a href="" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
+                        <a href="http://127.0.0.1:8000/catalog/search?q={{ item.get_category_display }}"
+                           class="good-category"><h6>{{ item.get_category_display }}</h6></a>
                         <span class="good-span"><a href="{{ item.get_absolute_url }}"
                                                    class="good-page">{{ item.name }}
                             {% if item.discount %}

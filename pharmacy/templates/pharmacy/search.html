@@ -1,10 +1,6 @@
 {% extends 'pharmacy/base.html' %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-
-    </div>
     <section class="goods">
         <div class="container">
             <div>
@@ -31,7 +27,7 @@
                 {% for item in object_list %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
                         <img src="{{ item.img.url }}" alt="Good">
-                        <a href="" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
+                        <h6>{{ item.get_category_display }}</h6>
                         <span class="good-span"><a href="{{ item.get_absolute_url }}"
                                                    class="good-page">{{ item.name }}
                             {% if item.discount %}

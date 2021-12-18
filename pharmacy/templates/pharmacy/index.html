@@ -95,7 +95,7 @@
                 {% for item in items %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
                         <img src="{{ item.img.url }}" alt="Good">
-                        <a href="" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
+                        <a href="http://127.0.0.1:8000/catalog/search?q={{ item.get_category_display }}" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
                         <span class="good-span"><a href="{{ item.get_absolute_url }}"
                                                    class="good-page">{{ item.name }}
                             {% if item.discount %}
