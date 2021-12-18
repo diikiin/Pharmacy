@@ -109,6 +109,5 @@ class Order(models.Model):
 
 class Contact(models.Model):
     name = models.CharField('Name', max_length=100)
-    phone = PhoneNumberField(null=True, blank=True)
     email = models.EmailField('Email', max_length=50)
     message = models.TextField('Message')

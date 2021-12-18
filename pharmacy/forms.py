@@ -11,13 +11,12 @@ class GoodForm(forms.ModelForm):
 
 class ContactForm(forms.ModelForm):
     name = forms.CharField()
-    phone = PhoneNumberField()
     email = forms.EmailField()
     message = forms.Textarea()
 
     class Meta:
         model = Contact
-        fields = ['name', 'phone', 'email', 'message']
+        fields = ['name', 'email', 'message']
 
 
 PAYMENT_CHOICES = (
