@@ -11,10 +11,10 @@ class ItemAdmin(admin.ModelAdmin):
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ('item', 'quantity')
-    readonly_fields = ('item', 'quantity')
+    readonly_fields = ('pk', 'user', 'item', 'quantity', 'ordered')
 
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ('user', 'ordered_date')
-    readonly_fields = ('user', 'ordered_date', 'ordered')
+    readonly_fields = ('pk', 'user', 'items', 'address', 'phone', 'payment', 'ordered_date', 'ordered')
