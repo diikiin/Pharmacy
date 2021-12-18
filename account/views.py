@@ -7,13 +7,6 @@ from .forms import RegistrationForm, LoginForm, EditForm
 from .models import User
 from pharmacy.models import Order
 
-navigation = [{'title': 'Home', 'url_name': 'home'},
-              {'title': 'About us', 'url_name': 'about'},
-              {'title': 'Contact', 'url_name': 'contact'},
-              {'title': 'Catalog', 'url_name': 'catalog'},
-              {'title': 'Cart', 'url_name': 'cart'},
-              {'title': 'Account'}]
-
 
 def register(request, *args, **kwargs):
     user = request.user
@@ -21,7 +14,7 @@ def register(request, *args, **kwargs):
         return HttpResponse(f'You already authenticated as {user.email}')
 
     context = {
-        'navigation': navigation
+        'title': 'Register'
     }
 
     if request.POST:
@@ -44,7 +37,7 @@ def register(request, *args, **kwargs):
 
 def login(request, *args, **kwargs):
     context = {
-        'navigation': navigation
+        'title': 'Login'
     }
 
     user = request.user
@@ -79,7 +72,7 @@ def get_redirect_if_exists(request):
 
 def password_reset(request):
     context = {
-        'navigation': navigation
+        'title': 'Password Reset'
     }
     return render(request, 'account/reset_password.html', context)
 
@@ -91,7 +84,7 @@ def logout(request):
 
 def profile(request, *args, **kwargs):
     context = {
-        'navigation': navigation
+        'title': 'Profile'
     }
     user = request.user
     user_id = user.id
@@ -118,7 +111,7 @@ def update_profile(request, *args, **kwargs):
     except User.DoesNotExist:
         return HttpResponse("Something went wrong")
     context = {
-        'navigation': navigation
+        'title': 'Update Profile'
     }
     if request.POST:
         form = EditForm(request.POST, request.FILES, instance=request.user)
@@ -153,9 +146,9 @@ def update_profile(request, *args, **kwargs):
 
 def password_change(request):
     context = {
-        'navigation': navigation
+        'title': 'Change password'
     }
-    return render(request, 'account/reset_password.html', context)
+    return render(request, 'account/password_change.html', context)
 
 
 def orders(request):
@@ -170,7 +163,7 @@ def orders(request):
     except User.DoesNotExist:
         return HttpResponse("That user doesn't exist")
     context = {
-        'navigation': navigation,
-        'orders': user_orders
+        'title': 'My orders',
+        'orders': user_orders,
     }
     return render(request, 'account/orders.html', context)

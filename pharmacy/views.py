@@ -12,17 +12,9 @@ from django.db.models import Q
 from .forms import ContactForm, CheckoutForm
 from .models import Item, OrderItem, Order
 
-navigation = [{'title': 'Home', 'url_name': 'home'},
-              {'title': 'About us', 'url_name': 'about'},
-              {'title': 'Contact', 'url_name': 'contact'},
-              {'title': 'Catalog', 'url_name': 'catalog'},
-              {'title': 'Cart', 'url_name': 'cart'},
-              {'title': 'Account'}]
-
 
 def index(request):
     context = {
-        'navigation': navigation,
         'title': 'Home',
         'items': Item.objects.all()[:6],
         'special': Item.objects.get(special__exact=True)
@@ -32,7 +24,6 @@ def index(request):
 
 def about(request):
     context = {
-        'navigation': navigation,
         'title': 'About us'
     }
     return render(request, 'pharmacy/about.html', context)
@@ -48,7 +39,6 @@ def contact(request):
             send_mail(subject, message, email, [settings.EMAIL_HOST_USER])
 
     context = {
-        'navigation': navigation,
         'title': 'Contact'
     }
     return render(request, 'pharmacy/contact.html', context)
@@ -60,7 +50,6 @@ class CatalogView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['navigation'] = navigation
         context['title'] = 'Catalog'
         return context
 
@@ -71,7 +60,6 @@ class SearchView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['navigation'] = navigation
         context['title'] = 'Catalog'
         return context
 
@@ -89,7 +77,6 @@ class ItemDetailView(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['navigation'] = navigation
         return context
 
 
@@ -99,7 +86,6 @@ class CartView(LoginRequiredMixin, View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'objects': order,
-                'navigation': navigation,
                 'title': 'Cart'
             }
             return render(self.request, 'pharmacy/cart.html', context)
@@ -211,7 +197,6 @@ class CheckoutView(View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             form = CheckoutForm()
             context = {
-                'navigation': navigation,
                 'form': form,
                 'order': order,
             }

@@ -104,8 +104,14 @@
                             {% else %}
                                 <br>{{ item.cost }} &#8376;</a>
                             {% endif %}</span>
-                        <a href="{{ item.get_add_to_cart_url }}"
-                           class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase pt-1">add to cart</a>
+                        {% if not request.user.is_authenticated %}
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"
+                                    class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase">add to cart
+                            </button>
+                        {% else %}
+                            <a href="{{ item.get_add_to_cart_url }}"
+                               class="btn btn-add-to-cart btn-add-to-cart-sm btn-sm text-uppercase pt-1">add to cart</a>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
