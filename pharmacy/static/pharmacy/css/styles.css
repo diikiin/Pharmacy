@@ -21,6 +21,10 @@ section {
     padding: 120px 0 90px;
 }
 
+.pb-50 {
+    padding-bottom: 110px;
+}
+
 p {
     text-indent: 20px;
 }

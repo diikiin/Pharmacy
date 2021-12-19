@@ -2,37 +2,39 @@
 
 {% block content %}
     <section>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-10 col-lg-8">
-                    <div class="card profile-content">
-                        <div class="profile-info">
-                            <div class="profile-title text-center"><h1>My orders</h1></div>
+        <div class="pb-50">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 col-lg-8">
+                        <div class="card profile-content">
                             <div class="profile-info">
-                                {% for order in orders %}
-                                    <div class="row mt-2 justify-content-center">
-                                        <div class="col-md-4 ps-5"><p class="mt-3 mb-2 field-heading">Ordered
-                                            products</p>
-                                            {% for item in order.items.all %}
-                                                <h5>{{ item }}</h5>
-                                            {% endfor %}
+                                <div class="profile-title text-center"><h1>My orders</h1></div>
+                                <div class="profile-info">
+                                    {% for order in orders %}
+                                        <div class="row mt-2 justify-content-center">
+                                            <div class="col-md-4 ps-5"><p class="mt-3 mb-2 field-heading">Ordered
+                                                products</p>
+                                                {% for item in order.items.all %}
+                                                    <h5>{{ item }}</h5>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="col-md-4"><p class="mt-3 mb-2 field-heading">Ordered date</p>
+                                                <h5>{{ order.ordered_date }}</h5>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <a href="{{ order.delete_order_url }}"
+                                                   class="btn btn-danger mt-4 mb-1">
+                                                    Cancel the order</a>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4"><p class="mt-3 mb-2 field-heading">Ordered date</p>
-                                            <h5>{{ order.ordered_date }}</h5>
+                                    {% empty %}
+                                        <div class="row mt-2 justify-content-center">
+                                            <h2 class="text-center">You do not have an order</h2>
+                                            <a href="{% url 'catalog' %}" class="btn contact-btn mb-3 fs-5">Go to
+                                                catalog</a>
                                         </div>
-                                        <div class="col-md-4 text-center">
-                                            <a href="{{ order.delete_order_url }}"
-                                               class="btn btn-danger mt-4 mb-1">
-                                                Cancel the order</a>
-                                        </div>
-                                    </div>
-                                {% empty %}
-                                    <div class="row mt-2 justify-content-center">
-                                        <h2 class="text-center">You do not have an order</h2>
-                                        <a href="{% url 'catalog' %}" class="btn contact-btn mb-3 fs-5">Go to
-                                            catalog</a>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
                     </div>
