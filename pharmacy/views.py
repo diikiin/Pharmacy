@@ -220,3 +220,24 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.warning(self.request, "You do not have an active order")
             return redirect("cart")
+
+
+def nutrition(request):
+    context = {
+        'title': 'Nutrition tips'
+    }
+    return render(request, 'pharmacy/nutrition.html', context)
+
+
+def coronavirus(request):
+    context = {
+        'title': 'Information about coronavirus'
+    }
+    return render(request, 'pharmacy/coronavirus.html', context)
+
+
+def cardio(request):
+    context = {
+        'title': 'Heart health'
+    }
+    return render(request, 'pharmacy/cardio.html', context)

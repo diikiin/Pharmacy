@@ -1,8 +1,6 @@
 {% extends "pharmacy/base.html" %}
-{% load crispy_forms_tags %}
 
 {% block content %}
-
     <main>
         <div class="container">
             <h2 class="my-5 h2 text-center">Checkout form</h2>
@@ -11,7 +9,6 @@
                     <div class="card">
                         <form method="POST" class="card-body">
                             {% csrf_token %}
-
                             <h3>Contact information</h3>
                             <div class=''>
                                 <div class="md-form mb-5">
@@ -33,9 +30,7 @@
                                            value="{{ user.phone }}">
                                 </div>
                             </div>
-
                             <h3>Payment option</h3>
-
                             <div class="d-block my-3">
                                 {% for value, name in form.fields.payment_option.choices %}
                                     <div class="custom-control custom-radio">
@@ -45,7 +40,6 @@
                                     </div>
                                 {% endfor %}
                             </div>
-
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Pay</button>
                         </form>

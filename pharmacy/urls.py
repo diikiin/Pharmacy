@@ -11,7 +11,10 @@ from .views import (
     remove_from_cart,
     remove_single_item_from_cart,
     delete_order,
-    CheckoutView
+    CheckoutView,
+    nutrition,
+    coronavirus,
+    cardio
 )
 
 
@@ -27,5 +30,8 @@ urlpatterns = [
     path('remove-from-cart/<slug>/', remove_from_cart, name='remove-from-cart'),
     path('remove-item-from-cart/<slug>/', remove_single_item_from_cart, name='remove-single-item-from-cart'),
     path('delete-order/<pk>/', delete_order, name='delete-order'),
-    path('checkout/', CheckoutView.as_view(), name='checkout')
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('nutrition/', nutrition, name='nutrition'),
+    path('coronavirus/', coronavirus, name='coronavirus'),
+    path('cardio/', cardio, name='cardio'),
 ]

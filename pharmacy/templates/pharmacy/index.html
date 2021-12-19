@@ -31,26 +31,33 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/media/img/information%201.jfif" class="d-block w-100 carousel-img"
-                                 alt="Online consulting">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4 style="color: #0C326B">Online consulting with doctor</h4>
-                                <p></p>
-                            </div>
+                            <a href="{% url 'cardio' %}">
+                                <img src="/media/img/information%201.png" class="d-block w-100 carousel-img"
+                                     alt="Heart health">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>Heart health</h4>
+                                    <p></p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="carousel-item">
+                            <a href="{% url 'nutrition' %}">
+                                <img src="/media/img/information%202.jpg" class="d-block w-100 carousel-img"
+                                     alt="Nutrition Tips">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4 style="color: #0C326B">Nutrition Tips</h4>
+                                </div>
+                            </a>
                         </div>
                         <div class="carousel-item">
-                            <img src="/media/img/information%202.jpg" class="d-block w-100 carousel-img"
-                                 alt="Nutrition Tips">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4 style="color: #0C326B">Nutrition Tips</h4>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/media/img/information%203.jpg" class="d-block w-100 carousel-img"
-                                 alt="Coronavirus">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h4>Information about coronavirus and prevention</h4>
-                            </div>
+                            <a href="{% url 'coronavirus' %}">
+                                <img src="/media/img/information%203.jpg" class="d-block w-100 carousel-img"
+                                     alt="Coronavirus">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>Information about coronavirus and prevention</h4>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
@@ -95,7 +102,8 @@
                 {% for item in items %}
                     <div class="goods-block col-lg-4 col-md-6 col-sm-12 text-center mb-4 pb-3 px-0">
                         <img src="{{ item.img.url }}" alt="Good">
-                        <a href="http://127.0.0.1:8000/catalog/search?q={{ item.get_category_display }}" class="good-category"><h6>{{ item.get_category_display }}</h6></a>
+                        <a href="http://127.0.0.1:8000/catalog/search?q={{ item.get_category_display }}"
+                           class="good-category"><h6>{{ item.get_category_display }}</h6></a>
                         <span class="good-span"><a href="{{ item.get_absolute_url }}"
                                                    class="good-page">{{ item.name }}
                             {% if item.discount %}
