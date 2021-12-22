@@ -29,7 +29,15 @@
                                         <a class="btn contact-btn fs-5 mb-3" href="{% url 'edit' %}">Edit my
                                             information</a></div>
                                     <div class="col-md-4 ps-sm-5">
-                                        <a class="btn contact-btn fs-5 mb-3" href="{% url 'password_change' %}">Change password</a></div>
+                                        <a class="btn contact-btn fs-5 mb-3" href="{% url 'password_change' %}">Change
+                                            password</a></div>
+                                </div>
+                                <div class="row mt-2 justify-content-center">
+                                    <div class="col-md-4 ps-sm-5">
+                                        <button type="button" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                class="btn btn-danger fs-5 mb-3">Delete my account
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,4 +46,22 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Are you sure?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    If you deleted you lost all your information. If you come back you will need to create new account.
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger fs-5 mb-3" href="{% url 'delete' %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -70,20 +70,6 @@ def get_redirect_if_exists(request):
     return redirect
 
 
-# def password_reset(request):
-#     context = {
-#         'title': 'Password Reset'
-#     }
-#     return render(request, 'account/password_reset.html', context)
-#
-#
-# def password_change(request):
-#     context = {
-#         'title': 'Change password'
-#     }
-#     return render(request, 'account/password_change.html', context)
-
-
 def logout(request):
     auth_logout(request)
     return redirect('home')
@@ -116,7 +102,7 @@ def update_profile(request, *args, **kwargs):
     try:
         user = User.objects.get(pk=user_id)
     except User.DoesNotExist:
-        return HttpResponse("Something went wrong")
+        return HttpResponse("Something went wrong. User does not exist")
     context = {
         'title': 'Update Profile'
     }
@@ -149,6 +135,16 @@ def update_profile(request, *args, **kwargs):
         # context['edit_form'] = form
     context['DATA_UPLOAD_MAX_MEMORY_SIZE'] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
     return render(request, 'account/update_profile.html', context)
+
+
+def delete_profile(request):
+    try:
+        user = User.objects.get(pk=request.user.id)
+    except User.DoesNotExist:
+        return HttpResponse("Something went wrong. User does not exist")
+    logout(request)
+    user.delete()
+    return redirect('home')
 
 
 def orders(request):

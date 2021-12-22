@@ -6,7 +6,8 @@ from .views import (
     logout,
     profile,
     orders,
-    update_profile
+    update_profile,
+    delete_profile
 )
 
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
     path('profile/', profile, name='profile'),
     path('edit-profile/', update_profile, name='edit'),
+    path('delete-profile/', delete_profile, name='delete'),
     path('orders/', orders, name='orders'),
     path('password_change/done/',
          auth_views.PasswordChangeDoneView.as_view(template_name='account/password_change_done.html'),
